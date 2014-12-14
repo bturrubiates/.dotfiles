@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# Download current version of oh-my-zsh and make sure it's up to date.
+OMZ_DIR="$HOME/.oh-my-zsh"
+
+if [ -d "$OMZ_DIR" ]; then
+  cd "$OMZ_DIR" && git pull
+else
+  git clone https://github.com/robbyrussell/oh-my-zsh.git "$OMZ_DIR"
+fi

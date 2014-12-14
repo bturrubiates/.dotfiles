@@ -1,0 +1,36 @@
+{
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"Alignment",
+		"AlignTab",
+		"All Autocomplete",
+		"AutoFileName",
+		"BracketHighlighter",
+		"Case Conversion",
+		"Comment-Snippets",
+		"Elixir",
+		"File Navigator",
+		"Git",
+		"GitGutter",
+		"Gitignore",
+		"LaTeXTools",
+		"MoveText",
+		"Origami",
+		"Predawn",
+		"SFTP",
+		"SideBarEnhancements",
+		"SmartMarkdown",
+		"StringEncode",
+		"SublimeLinter",
+		"SublimeREPL",
+		"Theme - Brogrammer",
+		"Theme - Soda",
+		"Theme - Soda SolarizedDark",
+		"Theme - Sodarized",
+		"Theme - Spacegray",
+		"Tomorrow Color Schemes",
+		"Visual Studio Dark",
+		"Wrap Plus"
+	]
+}

@@ -1,0 +1,117 @@
+" skip initialization for vim tiny or vim small
+if !1 | finish | endif
+
+if has('vim_starting')
+  set nocompatible
+
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" NeoBundle can manage itself
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'bling/vim-airline'
+NeoBundle 'edkolev/tmuxline.vim'
+NeoBundle 'http://github.com/tpope/vim-fugitive.git'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'ywjno/vim-tomorrow-theme'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'rhysd/vim-clang-format'
+
+call neobundle#end()
+
+" Check if uninstalled bundles exist in rc file.
+NeoBundleCheck
+
+scriptencoding utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+
+set t_Co=256
+
+" Set syntax highlighting on
+syntax on
+
+let $PAGER=''
+
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" Show line numbers
+if v:version >= 704
+    " Relative line numbers
+    set rnu
+    " Allow backspacing in 7.4
+    set backspace=2
+endif
+
+set nu
+set background=dark
+" Set the default theme to tomorrow
+color Tomorrow-Night-Eighties
+set laststatus=2
+" Show a line under the current line
+set cursorline
+set autoread
+ab /** /**<CR>/<Up>
+set colorcolumn=80
+
+" For syntax highlighting
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+filetype indent on
+set so=7
+set ruler
+
+" Turn of both audible and visual bells
+set novisualbell
+set noerrorbells
+set background=dark
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set ai
+set si
+set wrap
+set ignorecase
+set smartcase
+set autoread
+set incsearch
+set nobackup
+set noswapfile
+set showmatch
+set tw=79
+set formatoptions+=t
+
+set lazyredraw
+set ttyfast
+
+" Mouse support
+set mouse=a
+
+" Highlight things that are searched
+set hlsearch
+
+" Show commands that are typed
+set showcmd
+
+" Auto complete stuff
+set wildmenu
+set wildmode=list:longest,full
+
+set cindent
+set list listchars=tab:¬\ ,trail:»
+
+autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter *
+      \call system("tmux rename-window " . expand("%:t"))
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='tomorrow'
+let g:tmuxline_powerline_separators = 0
+
+let g:clang_format#style_options = {
+  \ "Standard" : "C++11"}
+
+autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>

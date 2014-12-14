@@ -1,0 +1,65 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+ZSH_CUSTOM="$HOME/.zsh_custom"
+ZSH_THEME="rogue"
+plugins=(dircycle lein virtualenvwrapper git git-extras colored-man gnu-utils
+         autojump pip gitfast zsh-syntax-highlighting)
+source $ZSH/oh-my-zsh.sh
+
+export EDITOR="subl"
+
+if [[ ! $TERM =~ "screen-256color" ]]
+then
+  tmux -2
+fi
+
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:~/bin
+
+# Useful keybinding to prepend sudo to a line with alt-s
+prepend-sudo() {
+    LBUFFER="sudo "$LBUFFER
+}
+
+# Create prepend-sudo widget
+zle -N prepend-sudo
+
+# Bind prepend-sudo to Alt-S
+bindkey "^[s" prepend-sudo
+
+# Support the git functionality of my Rogue theme.
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+
+alias cp='cp -Rv'
+alias erc='$EDITOR ~/.zshrc'
+alias sudo='sudo env PATH=$PATH'
+alias rrc='source ~/.zshrc'
+alias edit='$EDITOR'
+
+# Enable 256 Colors
+export TERM=screen-256color
+DISABLE_AUTO_TITLE="true"
+export GOPATH=$HOME/Documents/Programming/Go
+export PATH=$PATH:$GOPATH/bin
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:/home/klaves/bin:$PATH"
+export PATH="/home/ben/.gem/ruby/2.1.0/bin:$PATH"
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Documents/Programming
+
+source virtualenvwrapper.sh
+
+# if [[ "$OSTYPE" =~ "darwin" ]]
+# then
+#   source /usr/local/bin/virtualenvwrapper.sh
+# else
+#   source /usr/bin/virtualenvwrapper.sh
+# fi
+
+export PATH=$PATH:~/.local/bin
+
+unset GREP_OPTIONS
+alias grep="grep --color=always"
