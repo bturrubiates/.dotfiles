@@ -9,6 +9,10 @@
 [color]
   # Use colors in Git commands.
   ui = auto
+[alias]
+  unstage = reset HEAD --
+  last = log -1 --stat
+  cached = diff --cached
 [diff]
   # Detect copies
   renames = copies
