@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+# Path to sym linked config folder for sublime.
+SUBL_CONF="$HOME/.sublime_config"
+
+if [ -e "$SUBL_CONF" ]; then
+  echo "Removing sublime configuration symlink..."
+  rm "$SUBL_CONF"
+fi

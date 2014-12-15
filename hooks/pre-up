@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+# Download current version of oh-my-zsh and make sure it's up to date.
+OMZ_DIR="$HOME/.oh-my-zsh"
+
+if [ -d "$OMZ_DIR" ]; then
+  echo "Oh-my-zsh found. Updating..."
+  cd "$OMZ_DIR" && git pull
+else
+  echo "Installing oh-my-zsh..."
+  git clone https://github.com/robbyrussell/oh-my-zsh.git "$OMZ_DIR"
+fi
+
+# Create a sym link to the appropriate config folder
+SUBL_CONF="$HOME/.sublime_config"
+
+if [ ! -e "$SUBL_CONF" ]; then
+  echo "Creating sublime config link..."
+  ln -s "$HOME/Library/Application Support/Sublime Text 3/Packages/User/" \
+        "$SUBL_CONF" 
+fi
+
