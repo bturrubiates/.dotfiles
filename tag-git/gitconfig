@@ -1,0 +1,16 @@
+[user]
+  name = Ben Turrubiates
+  email = ben@turrubiat.es
+[push]
+  default = simple
+[core]
+  # Use custon .gitignore globally.
+  excludesfile = ~/.gitignore
+[color]
+  # Use colors in Git commands.
+  ui = auto
+[diff]
+  # Detect copies
+  renames = copies
+[help]
+  autocorrect = 1
