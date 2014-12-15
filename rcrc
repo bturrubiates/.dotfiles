@@ -1,2 +1,2 @@
-TAGS="sublime tmux vim zsh"
+TAGS="sublime tmux vim zsh git"
 UNDOTTED="*.sublime-settings CustomSnippets bin"
