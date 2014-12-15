@@ -12,11 +12,18 @@ else
 fi
 
 # Create a sym link to the appropriate config folder
-SUBL_CONF="$HOME/.sublime_config"
+SUBL_LINK="$HOME/.sublime_config"
 
-if [ ! -e "$SUBL_CONF" ]; then
+# Default to using default linux directory for sublime text config location
+SUBL_CONF="$HOME/.config/sublime-text-3"
+
+# OS X
+if [ "$(uname)" = "Darwin" ]; then
+  SUBL_CONF="$HOME/Library/Application Support/Sublime Text 3"
+fi
+
+if [ ! -e "$SUBL_LINK" ]; then
   echo "Creating sublime config link..."
-  ln -s "$HOME/Library/Application Support/Sublime Text 3/Packages/User/" \
-        "$SUBL_CONF" 
+  ln -s "$SUBL_CONF/Packages/User/" "$SUBL_LINK" 
 fi
 
