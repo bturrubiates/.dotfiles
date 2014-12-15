@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Sublime doesn't open correctly on Yosemite when using tmux.
+# This is an ugly fix...also causes the dock to act a bit strange with the ST
+# icon.
+SUBL_BASE="/opt/homebrew-cask/Caskroom/sublime-text3/Build 3065"
+SUBL_EXE="$SUBL_BASE/Sublime Text.app/Contents/SharedSupport/bin/subl"
+alias subl='reattach-to-user-namespace $SUBL_EXE'
+
+# Doesn't seem to properly expand alias if subl is used.
+export EDITOR="vim"
