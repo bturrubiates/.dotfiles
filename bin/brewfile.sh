@@ -5,7 +5,7 @@ brew tap staticfloat/julia
 
 formulas=(zsh-syntax-highlighting leiningen elixir ghc cabal-install python3  \
           clojurescript rust julia rcm reattach-to-user-namespace ssh-copy-id \
-          go tmux tree)
+          go tmux tree mercurial oniguruma)
 
 for formula in "${formulas[@]}"
 do
