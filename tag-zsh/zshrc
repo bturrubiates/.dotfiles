@@ -65,3 +65,6 @@ export PATH=$PATH:~/.local/bin
 
 unset GREP_OPTIONS
 alias grep="grep --color=always"
+
+export GOPATH="$HOME/Documents/programming/go"
+export PATH=$PATH:$GOPATH/bin
