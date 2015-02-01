@@ -46,3 +46,6 @@ Temporary Items
 
 # KDE directory preferences
 .directory
+
+# cscope database file
+cscope.out

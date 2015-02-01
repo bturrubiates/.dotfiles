@@ -6,6 +6,7 @@
 [core]
   # Use custom .gitignore globally.
   excludesfile = ~/.gitignore
+  editor = vim
 [color]
   # Use colors in Git commands.
   ui = auto
