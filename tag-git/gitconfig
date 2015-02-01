@@ -4,7 +4,7 @@
 [push]
   default = simple
 [core]
-  # Use custon .gitignore globally.
+  # Use custom .gitignore globally.
   excludesfile = ~/.gitignore
 [color]
   # Use colors in Git commands.
