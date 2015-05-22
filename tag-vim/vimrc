@@ -19,6 +19,8 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'ywjno/vim-tomorrow-theme'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'rhysd/vim-clang-format'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'scrooloose/nerdtree'
 
 call neobundle#end()
 
@@ -68,9 +70,9 @@ set ruler
 set novisualbell
 set noerrorbells
 set background=dark
-set expandtab
-set shiftwidth=2
-set tabstop=2
+set noexpandtab
+set shiftwidth=8
+set tabstop=8
 set ai
 set si
 set wrap
@@ -111,7 +113,16 @@ let g:airline_theme='tomorrow'
 let g:tmuxline_powerline_separators = 0
 
 let g:clang_format#style_options = {
-  \ "Standard" : "C++11"}
+  \ "BasedOnStyle" : "LLVM",
+  \ "IndentWidth" : 8,
+  \ "UseTab" : "Always",
+  \ "BreakBeforeBraces" : "Linux",
+  \ "AllowShortIfStatementsOnASingleLine" : "false",
+  \ "AllowShortFunctionsOnASingleLine" : "false",
+  \ "AllowShortLoopsOnASingleLine" : "false",
+  \ "ColumnLimit" : 80,
+  \ "SpacesInContainerLiterals" : "false",
+  \ "IndentCaseLabels" : "false"}
 
 autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
