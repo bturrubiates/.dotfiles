@@ -3,13 +3,19 @@
 # Download current version of oh-my-zsh and make sure it's up to date.
 OMZ_DIR="$HOME/.oh-my-zsh"
 
-if [ -d "$OMZ_DIR" ]; then
+if [[ -d "$OMZ_DIR" ]]; then
   echo "Oh-my-zsh found. Updating..."
   cd "$OMZ_DIR" && git pull
 else
   echo "Installing oh-my-zsh..."
   git clone https://github.com/robbyrussell/oh-my-zsh.git "$OMZ_DIR"
 fi
+
+# RCM doesn't have the ability to place files in non-home locations. This
+# workaround fixes this problem by creating a symbolically linked directory
+# that points to the configuration folder that we actually want to write to.
+
+echo "Attempting to prepare sublime setup."
 
 # Create a sym link to the appropriate config folder
 SUBL_LINK="$HOME/.sublime_config"
@@ -18,12 +24,34 @@ SUBL_LINK="$HOME/.sublime_config"
 SUBL_CONF="$HOME/.config/sublime-text-3"
 
 # OS X
-if [ "$(uname)" = "Darwin" ]; then
+if [[ "$(uname)" = "Darwin" ]]; then
   SUBL_CONF="$HOME/Library/Application Support/Sublime Text 3"
 fi
 
-if [ ! -e "$SUBL_LINK" ]; then
+if [[ ! -e "$SUBL_LINK" && -d "$SUBL_CONF" ]]; then
   echo "Creating sublime config link..."
-  ln -s "$SUBL_CONF/Packages/User/" "$SUBL_LINK" 
+  ln -s "$SUBL_CONF/Packages/User/" "$SUBL_LINK"
+else
+  echo "It doesn't seem sublime is installed."
 fi
 
+# Install neobundle
+
+echo "Installing neobundle."
+
+BUNDLE_DIR=~/.vim/bundle
+INSTALL_DIR="$BUNDLE_DIR"/neobundle.vim
+BUNDLE_GIT="https://github.com/Shougo/neobundle.vim"
+
+if [[ -e "$INSTALL_DIR" ]]; then
+  echo "Neobundle is already installed."
+  exit 0
+fi
+
+mkdir -p "$BUDNLE_DIR"
+git clone "$BUNDLE_GIT" "$BUNDLE_DIR/neobundle.vim"
+
+if [[ $? -eq 0 ]]; then
+  echo "Neobundle installed."
+else
+  echo "git clone failed with error code."
