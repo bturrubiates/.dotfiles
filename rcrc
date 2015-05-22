@@ -1,2 +1,3 @@
 TAGS="sublime tmux vim zsh git"
+EXCLUDES="*.md"
 UNDOTTED="*.sublime-settings CustomSnippets bin"
