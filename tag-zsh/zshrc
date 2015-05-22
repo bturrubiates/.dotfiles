@@ -6,36 +6,24 @@ ZSH_CUSTOM="$HOME/.zsh_custom"
 ZSH_THEME="rogue"
 
 # Will be overwritten in .zshrc.local if necessary.
-export EDITOR="subl"
+export EDITOR="vim"
 
-plugins=(dircycle lein virtualenvwrapper git git-extras colored-man gnu-utils
-         autojump pip gitfast zsh-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
-
-# Make sure running inside of tmux.
-if [[ ! $TERM =~ "screen-256color" ]]
-then
-  tmux -2
-fi
+plugins=(dircycle git git-extras colored-man gnu-utils autojump gitfast
+         zsh-syntax-highlighting)
 
 # Update per machine.
-if [[ -e "$HOME/.zshrc.local" ]]
-then
+if [[ -e "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
 
+source $ZSH/oh-my-zsh.sh
+
+# Make sure running inside of tmux.
+if [[ ! $TERM =~ "screen-256color" ]]; then
+  tmux -2
+fi
+
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:~/bin
-
-# Useful keybinding to prepend sudo to a line with alt-s
-prepend-sudo() {
-    LBUFFER="sudo "$LBUFFER
-}
-
-# Create prepend-sudo widget
-zle -N prepend-sudo
-
-# Bind prepend-sudo to Alt-S
-bindkey "^[s" prepend-sudo
 
 # Support the git functionality of my Rogue theme.
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -50,21 +38,6 @@ alias edit='$EDITOR'
 
 # Enable 256 Colors
 DISABLE_AUTO_TITLE="true"
-export GOPATH=$HOME/Documents/Programming/Go
-export PATH=$PATH:$GOPATH/bin
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:/home/klaves/bin:$PATH"
-export PATH="/home/ben/.gem/ruby/2.1.0/bin:$PATH"
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Documents/Programming
-
-source virtualenvwrapper.sh
-
-export PATH=$PATH:~/.local/bin
 
 unset GREP_OPTIONS
 alias grep="grep --color=always"
-
-export GOPATH="$HOME/Documents/programming/go"
-export PATH=$PATH:$GOPATH/bin

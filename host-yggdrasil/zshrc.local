@@ -7,5 +7,26 @@ SUBL_BASE="/opt/homebrew-cask/Caskroom/sublime-text3/Build 3065"
 SUBL_EXE="$SUBL_BASE/Sublime Text.app/Contents/SharedSupport/bin/subl"
 alias subl='reattach-to-user-namespace $SUBL_EXE'
 
-# Doesn't seem to properly expand alias if subl is used.
-export EDITOR="vim"
+source virtualenvwrapper.sh
+
+# Useful keybinding to prepend sudo to a line with alt-s
+prepend-sudo() {
+    LBUFFER="sudo "$LBUFFER
+}
+
+plugins=(dircycle lein virtualenvwrapper git git-extras colored-man gnu-utils
+         autojump pip gitfast zsh-syntax-highlighting)
+
+# Create prepend-sudo widget
+zle -N prepend-sudo
+
+# Bind prepend-sudo to Alt-S
+bindkey "^[s" prepend-sudo
+
+export GOPATH=$HOME/Documents/Programming/Go
+export PATH=$PATH:$GOPATH/bin
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Documents/Programming
+
+export PATH=$PATH:~/.local/bin
