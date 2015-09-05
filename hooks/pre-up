@@ -55,3 +55,4 @@ if [[ $? -eq 0 ]]; then
   echo "Neobundle installed."
 else
   echo "git clone failed with error code."
+fi
