@@ -17,7 +17,6 @@ NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'http://github.com/tpope/vim-fugitive.git'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'ywjno/vim-tomorrow-theme'
-NeoBundle 'SirVer/ultisnips'
 NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdtree'
@@ -126,3 +125,8 @@ let g:clang_format#style_options = {
 
 autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+if has('gui_running')
+    set guioptions-=T
+    set guifont=PragmataPro:h14
+endif
