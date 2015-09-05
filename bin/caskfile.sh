@@ -7,7 +7,7 @@ formulas=(spotify spotify-notifications atom macvim limechat virtualbox vlc  \
           sublime-text3 filezilla sourcetree kaleidoscope mou calibre slack  \
           rdio lighttable google-chrome-canary thunderbird evernote caffeine \
           adium flux yed skim mactex macdown clementine alfred aurora sshfs  \
-          karabiner)
+          karabiner iterm2 spectacle)
 
 for formula in "${formulas[@]}"
 do
