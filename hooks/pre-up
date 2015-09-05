@@ -32,7 +32,7 @@ if [[ ! -e "$SUBL_LINK" && -d "$SUBL_CONF" ]]; then
   echo "Creating sublime config link..."
   ln -s "$SUBL_CONF/Packages/User/" "$SUBL_LINK"
 else
-  echo "It doesn't seem sublime is installed."
+  echo "It seems sublime is setup."
 fi
 
 # Install neobundle
