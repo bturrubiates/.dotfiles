@@ -14,8 +14,6 @@
 .SRCINFO
 
 pkg/
-src/
-
 
 ### OSX ###
 .DS_Store
