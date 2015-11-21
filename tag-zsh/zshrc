@@ -23,7 +23,8 @@ if [[ ! $TERM =~ "screen-256color" ]]; then
   tmux -2
 fi
 
-export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:~/bin
+export GOPATH="$HOME/Documents/Programming/go"
+export PATH="$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
 # Support the git functionality of my Rogue theme.
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -32,18 +33,13 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 
 alias cp='cp -Rv'
 alias erc='$EDITOR ~/.zshrc'
-alias sudo='sudo env PATH=$PATH'
 alias rrc='source ~/.zshrc'
 alias edit='$EDITOR'
 
-# Enable 256 Colors
+# Don't autoset terminal title
 DISABLE_AUTO_TITLE="true"
 
 unset GREP_OPTIONS
 alias grep="grep --color=always"
-
-eval "$(hub alias -s)"
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 alias t='todo.sh -d ~/.todo.cfg'
