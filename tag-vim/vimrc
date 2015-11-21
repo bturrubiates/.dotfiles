@@ -14,7 +14,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'bling/vim-airline'
 NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'http://github.com/tpope/vim-fugitive.git'
+NeoBundle 'https://github.com/tpope/vim-fugitive.git'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'ywjno/vim-tomorrow-theme'
 NeoBundle 'rhysd/vim-clang-format'
