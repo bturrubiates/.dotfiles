@@ -7,7 +7,8 @@ brew tap thoughtbot/formulae
 formulas=(zsh-syntax-highlighting leiningen elixir ghc cabal-install python3  \
           clojurescript rust julia rcm reattach-to-user-namespace ssh-copy-id \
           go tmux tree mercurial oniguruma cscope ctags clang-format todo-txt \
-          pandoc libtool autoconf automake the_silver_searcher mosh lua luajit)
+          pandoc libtool autoconf automake the_silver_searcher lua luajit hub \
+          mosh)
 
 for formula in "${formulas[@]}"
 do
