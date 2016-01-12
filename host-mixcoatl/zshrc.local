@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+export GOPATH="$HOME/Documents/Programming/go"
+export PATH="$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
