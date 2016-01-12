@@ -20,6 +20,7 @@ NeoBundle 'ywjno/vim-tomorrow-theme'
 NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'dhruvasagar/vim-table-mode'
 
 call neobundle#end()
 
@@ -29,6 +30,7 @@ NeoBundleCheck
 scriptencoding utf-8
 set encoding=utf-8
 set fileencoding=utf-8
+set clipboard=unnamed
 
 set t_Co=256
 

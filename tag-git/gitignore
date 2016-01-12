@@ -38,6 +38,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+build/
+lib/
+share/
+tags
+
 
 ### Linux ###
 *~

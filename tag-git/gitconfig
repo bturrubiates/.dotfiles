@@ -1,6 +1,7 @@
 [user]
   name = Ben Turrubiates
-  email = ben@turrubiat.es
+[include]
+  path = ~/.gitconfig.local
 [push]
   default = simple
 [core]
@@ -13,6 +14,8 @@
 [alias]
   unstage = reset HEAD --
   last = log -1 --stat
+  graph = log --graph --abbrev-commit --decorate --date=relative
+  shortgraph = log --graph --oneline --decorate --date=relative
   cached = diff --cached
 [diff]
   # Detect copies

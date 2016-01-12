@@ -1,0 +1,106 @@
+#!/bin/zsh
+
+alias t='todo.sh -d ~/.todo.cfg'
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export PYTHONPATH=/Users/bturrubi/Documents/Programming/picasso
+
+eval "$(hub alias -s)"
+eval "$(thefuck --alias)"
+
+export GOPATH="$HOME/Documents/Programming/go"
+
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/bin:$GOPATH/bin:$PATH"
+
+function anybar () {
+    echo -n $1 | nc -4u -w0 localhost ${2:-1738};
+}
+
+function pushguard() {
+    local app_token="${APP_TOKEN:?Need to set APP_TOKEN non-empty}"
+    local user_key="${USER_KEY:?Need to set USER_KEY non-empty}"
+
+    "$@"
+    ret=$?
+
+    if [[ ret -eq 0 ]]; then
+            message="Finished: Success."
+    else
+            message="Finished: Failure."
+    fi
+
+    curl --silent --fail \
+            --form-string "token=$app_token" \
+            --form-string "user=$user_key" \
+            --form-string "message=$message" \
+            https://api.pushover.net/1/messages.json > /dev/null
+}
+
+function anyguard () {
+    ANYBAR_PORT=`jot -r 1 1700 1900`
+    ANYBAR_PORT=$ANYBAR_PORT open -n ~/Applications/AnyBar.app
+    sleep 0.5
+    anybar orange $ANYBAR_PORT
+    "$@"
+    ret=$?
+
+    if [[ ret -eq 0 ]]; then
+        anybar green $ANYBAR_PORT
+    else
+        anybar red $ANYBAR_PORT
+    fi
+    echo "Finished. Press [ENTER] to exit."
+    read ENTER
+    anybar quit $ANYBAR_PORT
+    return $ret
+}
+
+function sayguard () {
+    "$@"
+    ret=$?
+
+    if [[ ret -eq 0 ]]; then
+        say "Finished success."
+    else
+        say "Fished fail."
+    fi
+
+    return $ret
+}
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function git-cb () {
+    local format='%(refname:short)%09%(contents:subject)'
+    local filter='BEGIN { FS = "\t" } ; {printf "%-30s %s\n", $1, $2}'
+    local branch
+
+    # Only redirect stdout to /dev/null. On error don't consume the error
+    # message
+    if git rev-parse --git-dir > /dev/null; then
+            branch=$(git for-each-ref --format="$format" refs/heads |
+                awk "$filter" | fzf | cut -d " " -f 1)
+            git checkout "$branch"
+    else
+            return 1
+    fi
+}
+
+function git-cr () {
+    local format='%(refname:short)%09%(contents:subject)'
+    local filter='BEGIN { FS = "\t" } ; {printf "%-40s %s\n", $1, $2}'
+    local rbranch
+
+    # Only redirect stdout to /dev/null. On error don't consume the error
+    # message
+    if git rev-parse --git-dir > /dev/null; then
+            rbranch=$(git for-each-ref --format="$format" refs/remotes |
+                awk "$filter" | fzf | cut -d " " -f 1)
+            git checkout "$rbranch"
+    else
+            return 1
+    fi
+}
