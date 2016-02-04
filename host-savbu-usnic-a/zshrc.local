@@ -8,8 +8,23 @@ HISTSIZE=10000
 SAVEHIST=9000
 HISTFILE=~/.zsh_history
 
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
+module load use.own
+module load ag
+module load autojump
+[[ -s ~/_prefix/autojump/22.2.4/etc/profile.d/autojump.sh ]] &&                \
+	source ~/_prefix/autojump/22.2.4/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
 
 module load cisco/autotools/ac269-am115-lt246
 module load cisco/git/2.7.0
+module load cisco/tmux/2.0
+module load cisco/vim
+
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+export LD_LIBRARY_PATH="$HOME/libfabric-install/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/prefix/lib:$LD_LIBRARY_PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
