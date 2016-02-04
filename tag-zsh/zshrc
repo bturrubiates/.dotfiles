@@ -12,7 +12,7 @@ ZSH_THEME="rogue"
 # Will be overwritten in .zshrc.local if necessary.
 export EDITOR="vim"
 
-plugins=(dircycle git git-extras colored-man gnu-utils autojump gitfast
+plugins=(dircycle git git-extras colored-man gnu-utils gitfast
          zsh-syntax-highlighting tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
