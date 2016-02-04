@@ -21,6 +21,8 @@ NeoBundle 'rhysd/vim-clang-format'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'dhruvasagar/vim-table-mode'
+NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'junegunn/limelight.vim'
 
 call neobundle#end()
 
