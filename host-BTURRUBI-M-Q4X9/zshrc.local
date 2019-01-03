@@ -1,9 +1,7 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 alias t='todo.sh -d ~/.todo.cfg'
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-export PYTHONPATH=/Users/bturrubi/Documents/Programming/picasso
 
 eval "$(hub alias -s)"
 eval "$(thefuck --alias)"
@@ -69,38 +67,4 @@ function sayguard () {
     return $ret
 }
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-function git-cb () {
-    local format='%(refname:short)%09%(contents:subject)'
-    local filter='BEGIN { FS = "\t" } ; {printf "%-30s %s\n", $1, $2}'
-    local branch
-
-    # Only redirect stdout to /dev/null. On error don't consume the error
-    # message
-    if git rev-parse --git-dir > /dev/null; then
-            branch=$(git for-each-ref --format="$format" refs/heads |
-                awk "$filter" | fzf | cut -d " " -f 1)
-            git checkout "$branch"
-    else
-            return 1
-    fi
-}
-
-function git-cr () {
-    local format='%(refname:short)%09%(contents:subject)'
-    local filter='BEGIN { FS = "\t" } ; {printf "%-40s %s\n", $1, $2}'
-    local rbranch
-
-    # Only redirect stdout to /dev/null. On error don't consume the error
-    # message
-    if git rev-parse --git-dir > /dev/null; then
-            rbranch=$(git for-each-ref --format="$format" refs/remotes |
-                awk "$filter" | fzf | cut -d " " -f 1)
-            git checkout "$rbranch"
-    else
-            return 1
-    fi
-}
