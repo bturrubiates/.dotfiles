@@ -15,5 +15,4 @@ rcup
 ```
 
 This will symlink the appropriate files. It installs oh-my-zsh if it is not
-currently installed (in ~/.oh-my-zsh) and also assumes Sublime Text 3 is
-installed.
+currently installed (in ~/.oh-my-zsh).

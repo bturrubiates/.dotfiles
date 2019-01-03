@@ -11,30 +11,6 @@ else
   git clone https://github.com/robbyrussell/oh-my-zsh.git "$OMZ_DIR"
 fi
 
-# RCM doesn't have the ability to place files in non-home locations. This
-# workaround fixes this problem by creating a symbolically linked directory
-# that points to the configuration folder that we actually want to write to.
-
-echo "Attempting to prepare sublime setup."
-
-# Create a sym link to the appropriate config folder
-SUBL_LINK="$HOME/.sublime_config"
-
-# Default to using default linux directory for sublime text config location
-SUBL_CONF="$HOME/.config/sublime-text-3"
-
-# OS X
-if [[ "$(uname)" = "Darwin" ]]; then
-  SUBL_CONF="$HOME/Library/Application Support/Sublime Text 3"
-fi
-
-if [[ ! -e "$SUBL_LINK" && -d "$SUBL_CONF" ]]; then
-  echo "Creating sublime config link..."
-  ln -s "$SUBL_CONF/Packages/User/" "$SUBL_LINK"
-else
-  echo "It seems sublime is setup."
-fi
-
 # Install neobundle
 
 echo "Installing neobundle."
