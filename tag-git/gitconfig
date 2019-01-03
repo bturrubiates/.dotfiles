@@ -2,23 +2,48 @@
   name = Ben Turrubiates
 [include]
   path = ~/.gitconfig.local
-[push]
-  default = simple
 [core]
   # Use custom .gitignore globally.
   excludesfile = ~/.gitignore
   editor = vim
 [color]
-  # Use colors in Git commands.
-  ui = auto
+  ui = always
+[color "diff"]
+  meta = yellow bold
+  commit = green bold
+  frag = cyan bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "branch"]
+  current = cyan
+  local = green
+  remote = yellow
+[color "status"]
+  added = cyan
+  changed = green
+  untracked = yellow
 [alias]
   unstage = reset HEAD --
+  discard = checkout --
   last = log -1 --stat
   graph = log --graph --abbrev-commit --decorate --date=relative
   shortgraph = log --graph --oneline --decorate --date=relative
   cached = diff --cached
+  nuke = !git add -u && git commit --no-verify -qm 'Nuked' && git reset HEAD~1 --hard
+  ff = merge --ff-only
+  ebd = etch-branch describe
+  ebe = etch-branch etch
+  ebc = etch-branch clear
 [diff]
   # Detect copies
   renames = copies
 [help]
   autocorrect = 1
+[merge]
+  tool = splice
+[mergetool "splice"]
+  cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+  trustExitCode = true
+[pager]
+  branch = false
