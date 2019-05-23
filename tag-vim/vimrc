@@ -1,10 +1,48 @@
 " skip initialization for vim tiny or vim small
 if !1 | finish | endif
 
+let mapleader = ","
+let maplocalleader = "\\"
+
+let g:splice_prefix = "<localleader>"
+
 if has('vim_starting')
   set nocompatible
 
   set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+scriptencoding utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+set clipboard=unnamed
+
+set t_Co=256
+
+let $PAGER=''
+
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" Show line numbers
+if v:version >= 704
+    " Relative line numbers
+    set rnu
+    " Allow backspacing in 7.4
+    set backspace=2
+endif
+
+set nu
+set background=dark
+set laststatus=2
+" Show a line under the current line
+set cursorline
+set autoread
+ab /** /**<CR>/<Up>
+
+if exists('+colorcolumn')
+	set colorcolumn=80
+else
+	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -23,54 +61,26 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'junegunn/limelight.vim'
+NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'vim-scripts/ag.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'sjl/splice.vim'
 
 call neobundle#end()
 
 " Check if uninstalled bundles exist in rc file.
 NeoBundleCheck
 
-scriptencoding utf-8
-set encoding=utf-8
-set fileencoding=utf-8
-set clipboard=unnamed
-
-set t_Co=256
-
 " Set syntax highlighting on
 syntax on
-
-let $PAGER=''
-
-nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-" Show line numbers
-if v:version >= 704
-    " Relative line numbers
-    set rnu
-    " Allow backspacing in 7.4
-    set backspace=2
-endif
-
-set nu
-set background=dark
-" Set the default theme to tomorrow
-color Tomorrow-Night-Eighties
-set laststatus=2
-" Show a line under the current line
-set cursorline
-set autoread
-ab /** /**<CR>/<Up>
-
-if exists('+colorcolumn')
-	set colorcolumn=80
-else
-	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
 
 " For syntax highlighting
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
-filetype indent on
+filetype plugin indent on
 set so=7
 set ruler
 
@@ -132,8 +142,26 @@ let g:clang_format#style_options = {
   \ "SpacesInContainerLiterals" : "false",
   \ "IndentCaseLabels" : "false"}
 
-autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" TODO: Remove this
+let g:clang_format#style_options = {
+  \ "BasedOnStyle" : "LLVM",
+  \ "IndentWidth" : 4,
+  \ "UseTab" : "Never",
+  \ "BreakBeforeBraces" : "Linux",
+  \ "AllowShortIfStatementsOnASingleLine" : "false",
+  \ "AllowShortFunctionsOnASingleLine" : "false",
+  \ "AllowShortLoopsOnASingleLine" : "false",
+  \ "ColumnLimit" : 80,
+  \ "SpacesInContainerLiterals" : "false",
+  \ "IndentCaseLabels" : "false"}
+
+"set sts=4
+"set ts=4
+"set sw=4
+"set et
+
+autocmd FileType c,cpp nnoremap <buffer><localleader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <buffer><localleader>cf :ClangFormat<CR>
 
 if has('gui_running')
     set guioptions-=T
@@ -142,3 +170,19 @@ endif
 
 autocmd FileType gitcommit setlocal tw=72
 autocmd FileType gitcommit setlocal spell
+
+" Set the default theme to tomorrow
+color Tomorrow-Night-Eighties
+
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
